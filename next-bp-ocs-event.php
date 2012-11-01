@@ -20,6 +20,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/**
+ * @return nothing
+ * @uses is_events_group()
+ * @uses locate_template()
+ * @uses load_template()
+ * @tutorial faz o locate_template e depois loada a template se for um grupo de evento e receber o parametro por get.
+ */
 function conditional_group_template_change(){
 	if(is_events_group() && $_GET['ocs'])
 		{
@@ -31,6 +38,11 @@ function conditional_group_template_change(){
 add_action('bp_init','conditional_group_template_change');
 
 if(!function_exists('is_events_group')){
+	/**
+	 * @return boolean
+	 * está dentro do if para nao conflitar com o plugin em desenvolvimento, caso ativo.
+	 * @uses global $bp
+	 */
 	function is_events_group(){
 
 		global $bp;
